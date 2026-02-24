@@ -100,6 +100,41 @@ L'API sera accessible sur `http://localhost:3000`
 | `make build` | Build le front et le back |
 | `make lint` | Lint le front et le back |
 | `make clean` | Supprime les `node_modules` |
+| `make branch type=<type> id=<id>` | Crée une branche Git formatée |
+| `make commit theme=<theme> msg="<description>"` | Crée un commit formaté depuis la branche courante |
+
+### 🌿 `make branch` — Créer une branche
+
+Crée et checkout une branche au format `type/T-id` depuis `develop` (ou `main` pour les hotfixes).
+
+```bash
+# Syntaxe
+make branch type=<feat|fix|hotfix> id=<numéro>
+
+# Exemples
+make branch type=feat id=01      # → feat/T-01 (depuis develop)
+make branch type=fix id=12       # → fix/T-12  (depuis develop)
+make branch type=hotfix id=03    # → hotfix/T-03 (depuis main)
+```
+
+### 📝 `make commit` — Créer un commit formaté
+
+Parse automatiquement la branche courante pour générer un message de commit conforme aux conventions.
+
+```bash
+# Syntaxe
+make commit theme=<Scope> msg="<description>"
+
+# Exemple : si on est sur la branche feat/T-01
+make commit theme=Config msg="Mise en place de la configuration"
+# → feat(Config): T-01 Mise en place de la configuration
+
+# Exemple : si on est sur la branche fix/T-12
+make commit theme=API msg="Correction du format de date"
+# → fix(API): T-12 Correction du format de date
+```
+
+> 💡 Les scripts sources se trouvent dans `scripts/branch.sh` et `scripts/commit.sh`.
 
 ---
 

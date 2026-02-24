@@ -1,4 +1,4 @@
-.PHONY: install dev dev-front dev-back build lint clean
+.PHONY: install dev dev-front dev-back build lint clean branch commit
 
 install:
 	cd front && npm install
@@ -25,3 +25,9 @@ lint:
 clean:
 	rm -rf front/node_modules
 	rm -rf back/node_modules
+
+branch:
+	@./scripts/branch.sh $(type) $(id)
+
+commit:
+	@./scripts/commit.sh $(theme) $(msg)
