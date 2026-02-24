@@ -1,0 +1,44 @@
+name: Bugfix
+description: Correction d’un bug
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 🔁 Étapes de reproduction
+    validations:
+      required: true
+
+  - type: textarea
+    id: attendu
+    attributes:
+      label: 🎯 Comportement attendu
+    validations:
+      required: true
+
+  - type: textarea
+    id: observe
+    attributes:
+      label: ❌ Comportement observé
+    validations:
+      required: true
+
+  - type: textarea
+    id: dor
+    attributes:
+      label: 📌 Definition of Ready
+      value: |
+        - [ ] Bug reproductible
+        - [ ] Étapes décrites
+        - [ ] Environnement précisé
+        - [ ] Gravité identifiée
+
+  - type: textarea
+    id: dod
+    attributes:
+      label: 🏁 Definition of Done
+      value: |
+        - [ ] Bug non reproductible
+        - [ ] Cas de test ajouté si pertinent
+        - [ ] Aucune régression détectée

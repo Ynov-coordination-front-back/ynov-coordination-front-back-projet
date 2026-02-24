@@ -1,0 +1,54 @@
+name: User Story
+description: Créer une User Story
+title: "[US] "
+labels: ["user-story"]
+body:
+  - type: textarea
+    id: user_story
+    attributes:
+      label: 🎯 User Story
+      description: |
+        En tant que :
+        Je veux :
+        Afin de :
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: ✅ Critères d’acceptation
+      description: Liste des critères validables
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependances
+    attributes:
+      label: 🔗 Dépendances éventuelles
+
+  - type: textarea
+    id: dor
+    attributes:
+      label: 📌 Definition of Ready
+      value: |
+        - [ ] Titre clair
+        - [ ] Description compréhensible
+        - [ ] Type fonctionnel renseigné
+        - [ ] Estimation définie
+        - [ ] Priorité définie
+        - [ ] Rapporteur identifié
+        - [ ] Assigné défini
+        - [ ] Ticket compréhensible sans explication orale
+
+  - type: textarea
+    id: dod
+    attributes:
+      label: 🏁 Definition of Done
+      value: |
+        - [ ] Code implémenté
+        - [ ] Fonctionnel testé
+        - [ ] Aucun bug bloquant
+        - [ ] Ticket relu / validé
+        - [ ] Branche fusionnée
+        - [ ] Critères d’acceptation validés

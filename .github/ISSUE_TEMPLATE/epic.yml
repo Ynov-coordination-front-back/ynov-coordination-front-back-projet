@@ -1,0 +1,35 @@
+name: Epic
+description: Créer un Epic (ne va pas en sprint)
+title: "[EPIC] "
+labels: ["epic"]
+body:
+  - type: textarea
+    id: objectif
+    attributes:
+      label: 🎯 Objectif métier
+      description: Décrire clairement l'objectif de l'Epic
+    validations:
+      required: true
+
+  - type: textarea
+    id: valeur
+    attributes:
+      label: 💎 Valeur apportée
+      description: Quelle valeur utilisateur ou business ?
+    validations:
+      required: true
+
+  - type: textarea
+    id: decoupage
+    attributes:
+      label: 🧩 Découpage prévu
+      description: Lister les futures User Stories ou tâches
+
+  - type: textarea
+    id: dod
+    attributes:
+      label: ✅ Definition of Done (Epic)
+      value: |
+        - [ ] Toutes les stories associées terminées
+        - [ ] Objectif initial atteint
+        - [ ] Valeur livrée démontrable

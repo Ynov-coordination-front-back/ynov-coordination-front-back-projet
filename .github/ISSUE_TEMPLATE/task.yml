@@ -1,0 +1,37 @@
+name: Task
+description: Tâche technique
+title: "[TASK] "
+labels: ["task"]
+body:
+  - type: textarea
+    id: objectif
+    attributes:
+      label: 🎯 Objectif technique
+    validations:
+      required: true
+
+  - type: textarea
+    id: resultat
+    attributes:
+      label: 📦 Résultat attendu
+    validations:
+      required: true
+
+  - type: textarea
+    id: dor
+    attributes:
+      label: 📌 Definition of Ready
+      value: |
+        - [ ] Objectif technique clair
+        - [ ] Périmètre bien défini
+        - [ ] Pas de dépendance bloquante
+        - [ ] Résultat attendu explicite
+
+  - type: textarea
+    id: dod
+    attributes:
+      label: 🏁 Definition of Done
+      value: |
+        - [ ] Travail technique terminé
+        - [ ] Aucun impact négatif sur l’existant
+        - [ ] Documentation mise à jour si nécessaire
