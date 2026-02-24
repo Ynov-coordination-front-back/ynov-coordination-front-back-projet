@@ -11,8 +11,8 @@ ID="$2"
 
 # --- Validation des arguments ---
 if [ -z "$TYPE" ] || [ -z "$ID" ]; then
-  echo "❌ Usage: make branch type=<type> id=<id>"
-  echo "   Exemple: make branch type=feat id=01"
+  echo "❌ Usage: ./run branch <type> <id>"
+  echo "   Exemple: ./run branch feat 01"
   exit 1
 fi
 

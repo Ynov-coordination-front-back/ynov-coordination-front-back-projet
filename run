@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# =============================================================================
+# Wrapper pour les commandes du projet
+# Usage:
+#   ./run branch feat 01
+#   ./run commit Config "Mise en place de la configuration"
+# =============================================================================
+
+COMMAND="$1"
+shift
+
+case "$COMMAND" in
+  branch)
+    ./scripts/branch.sh "$@"
+    ;;
+  commit)
+    ./scripts/commit.sh "$@"
+    ;;
+  *)
+    echo "❌ Commande inconnue: '$COMMAND'"
+    echo ""
+    echo "Commandes disponibles:"
+    echo "  ./run branch <type> <id>              Créer une branche (feat/fix/hotfix)"
+    echo "  ./run commit <theme> <description>    Créer un commit formaté"
+    echo ""
+    echo "Commandes Make (sans arguments positionnels):"
+    echo "  make install | make dev | make build | make lint | make clean"
+    exit 1
+    ;;
+esac

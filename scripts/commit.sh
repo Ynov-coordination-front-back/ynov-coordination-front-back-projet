@@ -15,8 +15,8 @@ DESCRIPTION="$*"
 
 # --- Validation des arguments ---
 if [ -z "$THEME" ] || [ -z "$DESCRIPTION" ]; then
-  echo "❌ Usage: make commit theme=<theme> msg=\"<description>\""
-  echo "   Exemple: make commit theme=Config msg=\"Mise en place de la configuration\""
+  echo "❌ Usage: ./run commit <theme> <description>"
+  echo "   Exemple: ./run commit Config \"Mise en place de la configuration\""
   exit 1
 fi
 
