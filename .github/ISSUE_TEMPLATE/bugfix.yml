@@ -42,3 +42,9 @@ body:
         - [ ] Bug non reproductible
         - [ ] Cas de test ajouté si pertinent
         - [ ] Aucune régression détectée
+
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ Avant de créer l’issue :
+        Vérifiez que le type sélectionné est bien **Bugfix**

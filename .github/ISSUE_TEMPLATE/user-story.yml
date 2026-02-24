@@ -52,3 +52,9 @@ body:
         - [ ] Ticket relu / validé
         - [ ] Branche fusionnée
         - [ ] Critères d’acceptation validés
+
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ Avant de créer l’issue :
+        Vérifiez que le type sélectionné est bien **User Story

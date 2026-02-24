@@ -33,3 +33,9 @@ body:
         - [ ] Toutes les stories associées terminées
         - [ ] Objectif initial atteint
         - [ ] Valeur livrée démontrable
+
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ Avant de créer l’issue :
+        Vérifiez que le type sélectionné est bien **Epic**
