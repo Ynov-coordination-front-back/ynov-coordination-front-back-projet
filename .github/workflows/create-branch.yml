@@ -1,26 +1,36 @@
 name: Auto Create Branch
+
 on:
-  project_card:
-    types: [moved]
+  issues:
+    types: [assigned]
 
 jobs:
   create_branch:
-    if: github.event.project_card.column_name == 'Ready'
     runs-on: ubuntu-latest
     steps:
-      - name: Get Issue Type and Number
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Determine branch type from labels
         id: info
         run: |
-          TYPE=$(echo "${{ github.event.issue.type }}" | tr '[:upper:]' '[:lower:]')
-          if [ "$TYPE" == "user story" ] || [ "$TYPE" == "task" ]; then TYPE="feat"; fi
-          if [ "$TYPE" == "bugfix" ] || [ "$TYPE" == "hotfix" ]; then TYPE="fix"; fi
+          LABELS="${{ join(github.event.issue.labels.*.name, ',') }}"
+          ISSUE_NUMBER="${{ github.event.issue.number }}"
 
-          echo "BRANCH_TYPE=$TYPE" >> $GITHUB_ENV
-          echo "ISSUE_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
+          if echo "$LABELS" | grep -qi "hotfix"; then
+            BRANCH_TYPE="hotfix"
+          elif echo "$LABELS" | grep -qi "bug"; then
+            BRANCH_TYPE="fix"
+          else
+            BRANCH_TYPE="feat"
+          fi
 
-      - name: Create Branch
-        uses: peterjgrainger/action-create-branch@v2.2.0
+          echo "branch_name=${BRANCH_TYPE}/TICKET-${ISSUE_NUMBER}" >> $GITHUB_OUTPUT
+
+      - name: Create branch
+        run: |
+          BRANCH="${{ steps.info.outputs.branch_name }}"
+          git checkout -b "$BRANCH"
+          git push origin "$BRANCH"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          branch: ${{ env.BRANCH_TYPE }}/TICKET-${{ env.ISSUE_NUMBER }}

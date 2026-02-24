@@ -1,1 +1,23 @@
+# Environnement
 .env
+
+# Dependencies
+node_modules/
+
+# Build outputs
+front/dist/
+back/dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

@@ -1,38 +1,225 @@
-# To-Do List Project 🚀
+# ✅ To-Do List Project
 
-Projet POC (Proof of Concept) visant à mettre en place une application de gestion de tâches robuste avec une architecture découplée.
+> Application fullstack de gestion de tâches — Proof of Concept (POC)
 
-## 📝 Contexte
+---
 
-Ce projet est réalisé dans le cadre du module "Coordination Front/Back" chez Ynov. L'objectif est de démontrer la mise en place d'un workflow de développement professionnel (Agile, Automations, CI/CD).
+## 📝 Contexte du projet
+
+Ce projet est réalisé dans le cadre du module **"Coordination Front/Back"** chez **Ynov Campus**.
+
+L'objectif est de construire une **application de To-Do List** complète avec une architecture découplée front/back, tout en mettant en place un **workflow de développement professionnel** :
+- Méthodologie **Agile** (Kanban, sprints)
+- Gestion de projet structurée (Epics, User Stories, Tasks)
+- Automations GitHub (CI/CD, création automatique de branches)
+- Conventions de code et de collaboration strictes
+
+### 🎯 Fonctionnalité principale
+
+Permettre à un utilisateur de **créer, lire, modifier et supprimer des tâches** (CRUD) via une interface web moderne connectée à une API REST.
+
+---
 
 ## 🛠 Stack Technique
 
-- **Front-end :** VueJS 3 (Vite, TypeScript)
-- **Back-end :** NodeJS (Express)
-- **Gestion de projet :** GitHub Projects (Méthode Kanban)
+| Couche | Technologie |
+|--------|------------|
+| **Front-end** | Vue.js 3 + Vite + TypeScript + Pinia + Vue Router |
+| **Back-end** | Node.js + Express + TypeScript |
+| **Gestion de projet** | GitHub Projects (Kanban) |
+| **CI/CD** | GitHub Actions |
 
-## 🚀 Installation & Lancement
+---
 
-Le projet utilise un `Makefile` pour centraliser les commandes.
+## 🚀 Prérequis
 
-1. **Cloner le projet :**
-  ```bash
-  git clone git@github.com:Ynov-coordination-front-back/ynov-coordination-front-back-projet.git
-  cd ynov-coordination-front-back-projet
-  ```
+- **Node.js** `>= 20.19.0` ou `>= 22.12.0`
+- **npm** `>= 10`
+- **Make** (pour les commandes centralisées)
+- **Git**
 
-2. **Installer les dépendances (Front & Back) :**
-  ```bash
-  make install
-  ```
+---
 
-3. **Lancer le projet en développement :**
-  ```bash
-  make dev
-  ```
+## 📦 Installation & Lancement
+
+### Méthode rapide (recommandée)
+
+Le projet utilise un **Makefile** pour centraliser toutes les commandes.
+
+```bash
+# 1. Cloner le projet
+git clone git@github.com:Ynov-coordination-front-back/ynov-coordination-front-back-projet.git
+cd ynov-coordination-front-back-projet
+
+# 2. Copier le fichier d'environnement
+cp .env.example .env
+
+# 3. Installer toutes les dépendances (front + back)
+make install
+
+# 4. Lancer le projet en mode développement
+make dev
+```
+
+### Méthode manuelle
+
+<details>
+<summary>📂 Front-end uniquement</summary>
+
+```bash
+cd front
+npm install
+npm run dev
+```
+
+Le front sera accessible sur `http://localhost:5173`
+
+</details>
+
+<details>
+<summary>📂 Back-end uniquement</summary>
+
+```bash
+cd back
+npm install
+npm run dev
+```
+
+L'API sera accessible sur `http://localhost:3000`
+
+</details>
+
+### Commandes Make disponibles
+
+| Commande | Description |
+|----------|-------------|
+| `make install` | Installe les dépendances front et back |
+| `make dev` | Lance front et back en mode développement |
+| `make dev-front` | Lance uniquement le front |
+| `make dev-back` | Lance uniquement le back |
+| `make build` | Build le front et le back |
+| `make lint` | Lint le front et le back |
+| `make clean` | Supprime les `node_modules` |
+
+---
+
+## 🌿 Branching Strategy
+
+Nous utilisons une stratégie basée sur le **Semantic Versioning** et les types de tickets.
+
+### Branches principales
+
+| Branche | Rôle |
+|---------|------|
+| `main` | Branche stable, toujours déployable en production |
+| `develop` | Branche d'intégration pour les fonctionnalités en cours |
+
+### Branches de travail
+
+Les branches sont nommées automatiquement à partir du type de ticket :
+
+| Type de ticket | Préfixe de branche | Exemple |
+|----------------|-------------------|---------|
+| User Story / Task | `feat/` | `feat/TICKET-12` |
+| Bugfix | `fix/` | `fix/TICKET-25` |
+| Hotfix | `hotfix/` | `hotfix/TICKET-30` |
+
+### Flux de travail Git
+
+```
+main ← develop ← feat/TICKET-XX
+                ← fix/TICKET-XX
+main ← hotfix/TICKET-XX (urgences uniquement)
+```
+
+1. Créer une branche depuis `develop` (auto via GitHub Projects)
+2. Développer sur sa branche
+3. Ouvrir une **Pull Request** vers `develop`
+4. Code Review obligatoire
+5. Merge après validation
+6. `develop` → `main` lors des releases
+
+### Semantic Versioning
+
+Les releases suivent le format **`vMAJOR.MINOR.PATCH`** :
+
+| Incrément | Quand ? | Exemple |
+|-----------|---------|---------|
+| **MAJOR** | Changement cassant / incompatible | `v2.0.0` |
+| **MINOR** | Nouvelle fonctionnalité rétrocompatible | `v1.1.0` |
+| **PATCH** | Correction de bug | `v1.0.1` |
+
+---
+
+## 🔄 Workflow — Cycle de vie des tickets
+
+### États d'un ticket
+
+```
+Backlog → Ready → In Progress → In Review → Done → Released
+```
+
+| État | Description |
+|------|-------------|
+| **Backlog** | Ticket rédigé, tous les champs obligatoires remplis |
+| **Ready** | Ticket validé (DoR ok), prêt à être pris en sprint |
+| **In Progress** | Travail en cours, une seule personne assignée |
+| **In Review** | Code terminé, PR ouverte, en attente de review |
+| **Done** | Validé, fonctionnel, mergé |
+| **Released** | Déployé en production |
+
+### Champs obligatoires d'un ticket
+
+- **Titre** — Court et actionnable (ex: *"Implémenter la page de login"*)
+- **Description** — Contexte + Besoin + Résultat attendu
+- **Type fonctionnel** — Front / Back / Fullstack
+- **Estimation** — En points (1, 2, 3, 5)
+- **Priorité** — Basse / Moyenne / Haute / Critique
+- **Rapporteur** — Qui a créé le ticket
+- **Assigné** — Responsable du ticket (1 seul)
+
+> 📖 Pour plus de détails sur les DoR/DoD et les conventions, voir [CONTRIBUTING.md](./CONTRIBUTING.md) et [GUIDELINES.md](./GUIDELINES.md)
+
+---
+
+## 📁 Structure du projet
+
+```
+.
+├── front/                  # Application Vue.js 3
+│   ├── src/
+│   │   ├── components/     # Composants réutilisables
+│   │   ├── views/          # Pages de l'application
+│   │   ├── router/         # Configuration des routes
+│   │   ├── stores/         # State management (Pinia)
+│   │   └── assets/         # CSS, images
+│   └── package.json
+├── back/                   # API Express
+│   ├── src/
+│   │   ├── routes/         # Définition des routes API
+│   │   ├── controllers/    # Logique métier
+│   │   └── index.ts        # Point d'entrée serveur
+│   └── package.json
+├── .github/                # Templates, workflows CI/CD
+├── documentation/          # Documentation complémentaire
+├── Makefile                # Commandes centralisées
+├── CONTRIBUTING.md         # Guide de contribution
+├── GUIDELINES.md           # Conventions techniques
+└── README.md
+```
+
+---
 
 ## 🔗 Liens Utiles
-Board de Gestion de Projet : [GitHub](https://github.com/orgs/Ynov-coordination-front-back/projects/2)
 
-Documentation détaillée : Voir le dossier /documentation
+| Ressource | Lien |
+|-----------|------|
+| 📋 Board de gestion de projet | [GitHub Projects](https://github.com/orgs/Ynov-coordination-front-back/projects/2) |
+| 📖 Guide de contribution | [CONTRIBUTING.md](./CONTRIBUTING.md) |
+| 📏 Conventions techniques | [GUIDELINES.md](./GUIDELINES.md) |
+
+---
+
+## 👥 Équipe
+
+Projet réalisé dans le cadre du module **Coordination Front/Back** — Ynov Campus 2025-2026.
