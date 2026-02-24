@@ -6,14 +6,14 @@ body:
   - type: textarea
     id: objectif
     attributes:
-      label: 🎯 Objectif technique
+      label: 🎯 Objectif
     validations:
       required: true
 
   - type: textarea
     id: resultat
     attributes:
-      label: 📦 Résultat attendu
+      label: 📦 Notes Technique
     validations:
       required: true
 
