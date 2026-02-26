@@ -7,9 +7,9 @@ const options: Options = {
     definition: {
         openapi: "3.0.0",
         info: {
-            title: "My API",
+            title: "Todolist API",
             version: "1.0.0",
-            description: "Express TypeScript API with Swagger",
+            description: "Todolist API with Swagger",
         },
         servers: [
             {
