@@ -22,12 +22,12 @@ Permettre à un utilisateur de **créer, lire, modifier et supprimer des tâches
 
 ## 🛠 Stack Technique
 
-| Couche | Technologie |
-|--------|------------|
-| **Front-end** | Vue.js 3 + Vite + TypeScript + Pinia + Vue Router |
-| **Back-end** | Node.js + Express + TypeScript |
-| **Gestion de projet** | GitHub Projects (Kanban) |
-| **CI/CD** | GitHub Actions |
+| Couche                | Technologie                                       |
+| --------------------- | ------------------------------------------------- |
+| **Front-end**         | Vue.js 3 + Vite + TypeScript + Pinia + Vue Router |
+| **Back-end**          | Node.js + Express + TypeScript                    |
+| **Gestion de projet** | GitHub Projects (Kanban)                          |
+| **CI/CD**             | GitHub Actions                                    |
 
 ---
 
@@ -91,15 +91,15 @@ L'API sera accessible sur `http://localhost:3000`
 
 ### Commandes Make disponibles
 
-| Commande | Description |
-|----------|-------------|
-| `make install` | Installe les dépendances front et back |
-| `make dev` | Lance front et back en mode développement |
-| `make dev-front` | Lance uniquement le front |
-| `make dev-back` | Lance uniquement le back |
-| `make build` | Build le front et le back |
-| `make lint` | Lint le front et le back |
-| `make clean` | Supprime les `node_modules` |
+| Commande         | Description                               |
+| ---------------- | ----------------------------------------- |
+| `make install`   | Installe les dépendances front et back    |
+| `make dev`       | Lance front et back en mode développement |
+| `make dev-front` | Lance uniquement le front                 |
+| `make dev-back`  | Lance uniquement le back                  |
+| `make build`     | Build le front et le back                 |
+| `make lint`      | Lint le front et le back                  |
+| `make clean`     | Supprime les `node_modules`               |
 
 ### 🧰 Scripts Git — `./run`
 
@@ -119,11 +119,11 @@ Crée et checkout une branche au format `type/T-id` depuis `develop` (ou `main` 
 ./run branch hotfix 03    # → hotfix/T-03 (depuis main)
 ```
 
-| Type | Branche de base | Usage |
-|------|----------------|-------|
-| `feat` | `develop` | Nouvelle fonctionnalité |
-| `fix` | `develop` | Correction de bug |
-| `hotfix` | `main` | Correction urgente en production |
+| Type     | Branche de base | Usage                            |
+| -------- | --------------- | -------------------------------- |
+| `feat`   | `develop`       | Nouvelle fonctionnalité          |
+| `fix`    | `develop`       | Correction de bug                |
+| `hotfix` | `main`          | Correction urgente en production |
 
 #### 📝 `./run commit` — Créer un commit formaté
 
@@ -152,20 +152,20 @@ Nous utilisons une stratégie basée sur le **Semantic Versioning** et les types
 
 ### Branches principales
 
-| Branche | Rôle |
-|---------|------|
-| `main` | Branche stable, toujours déployable en production |
+| Branche   | Rôle                                                    |
+| --------- | ------------------------------------------------------- |
+| `main`    | Branche stable, toujours déployable en production       |
 | `develop` | Branche d'intégration pour les fonctionnalités en cours |
 
 ### Branches de travail
 
 Les branches sont nommées automatiquement à partir du type de ticket :
 
-| Type de ticket | Préfixe de branche | Exemple |
-|----------------|-------------------|---------|
-| User Story / Task | `feat/` | `feat/TICKET-12` |
-| Bugfix | `fix/` | `fix/TICKET-25` |
-| Hotfix | `hotfix/` | `hotfix/TICKET-30` |
+| Type de ticket    | Préfixe de branche | Exemple            |
+| ----------------- | ------------------ | ------------------ |
+| User Story / Task | `feat/`            | `feat/TICKET-12`   |
+| Bugfix            | `fix/`             | `fix/TICKET-25`    |
+| Hotfix            | `hotfix/`          | `hotfix/TICKET-30` |
 
 ### Flux de travail Git
 
@@ -186,11 +186,11 @@ main ← hotfix/TICKET-XX (urgences uniquement)
 
 Les releases suivent le format **`vMAJOR.MINOR.PATCH`** :
 
-| Incrément | Quand ? | Exemple |
-|-----------|---------|---------|
-| **MAJOR** | Changement cassant / incompatible | `v2.0.0` |
+| Incrément | Quand ?                                 | Exemple  |
+| --------- | --------------------------------------- | -------- |
+| **MAJOR** | Changement cassant / incompatible       | `v2.0.0` |
 | **MINOR** | Nouvelle fonctionnalité rétrocompatible | `v1.1.0` |
-| **PATCH** | Correction de bug | `v1.0.1` |
+| **PATCH** | Correction de bug                       | `v1.0.1` |
 
 ---
 
@@ -202,14 +202,14 @@ Les releases suivent le format **`vMAJOR.MINOR.PATCH`** :
 Backlog → Ready → In Progress → In Review → Done → Released
 ```
 
-| État | Description |
-|------|-------------|
-| **Backlog** | Ticket rédigé, tous les champs obligatoires remplis |
-| **Ready** | Ticket validé (DoR ok), prêt à être pris en sprint |
-| **In Progress** | Travail en cours, une seule personne assignée |
-| **In Review** | Code terminé, PR ouverte, en attente de review |
-| **Done** | Validé, fonctionnel, mergé |
-| **Released** | Déployé en production |
+| État            | Description                                         |
+| --------------- | --------------------------------------------------- |
+| **Backlog**     | Ticket rédigé, tous les champs obligatoires remplis |
+| **Ready**       | Ticket validé (DoR ok), prêt à être pris en sprint  |
+| **In Progress** | Travail en cours, une seule personne assignée       |
+| **In Review**   | Code terminé, PR ouverte, en attente de review      |
+| **Done**        | Validé, fonctionnel, mergé                          |
+| **Released**    | Déployé en production                               |
 
 ### Champs obligatoires d'un ticket
 
@@ -255,11 +255,11 @@ Backlog → Ready → In Progress → In Review → Done → Released
 
 ## 🔗 Liens Utiles
 
-| Ressource | Lien |
-|-----------|------|
+| Ressource                    | Lien                                                                               |
+| ---------------------------- | ---------------------------------------------------------------------------------- |
 | 📋 Board de gestion de projet | [GitHub Projects](https://github.com/orgs/Ynov-coordination-front-back/projects/2) |
-| 📖 Guide de contribution | [CONTRIBUTING.md](./CONTRIBUTING.md) |
-| 📏 Conventions techniques | [GUIDELINES.md](./GUIDELINES.md) |
+| 📖 Guide de contribution      | [CONTRIBUTING.md](./CONTRIBUTING.md)                                               |
+| 📏 Conventions techniques     | [GUIDELINES.md](./GUIDELINES.md)                                                   |
 
 ---
 
