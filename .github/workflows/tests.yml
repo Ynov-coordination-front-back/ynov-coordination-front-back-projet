@@ -15,7 +15,7 @@ on:
 
 jobs:
   tests:
-    name: Test Backend
+    name: Test back
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: 22
           cache: "npm"
-          cache-dependency-path: backend/package-lock.json
+          cache-dependency-path: back/package-lock.json
 
       - name: Install dependencies
         run: npm ci
