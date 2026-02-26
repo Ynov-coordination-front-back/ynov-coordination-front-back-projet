@@ -1,0 +1,57 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-back:
+    name: Build back
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+          cache-dependency-path: back/package-lock.json
+
+      - name: Install dependencies
+        working-directory: back
+        run: npm ci
+
+      - name: Build
+        working-directory: back
+        run: npx tsc
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: back-dist
+          path: back/dist/
+
+  build-front:
+    name: Build front
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+          cache-dependency-path: front/package-lock.json
+
+      - name: Install dependencies
+        working-directory: front
+        run: npm ci
+
+      - name: Build
+        working-directory: front
+        run: npm run build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: front-dist
+          path: front/dist/
