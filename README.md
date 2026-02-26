@@ -146,6 +146,26 @@ Parse automatiquement la branche courante pour générer un message de commit co
 
 ---
 
+## 🧪 Tests
+
+### Front
+
+Les tests sont écrits avec [Playwright](https://playwright.dev/).
+
+```bash
+cd front
+npm test # will run npx playwright test
+```
+
+### Back
+
+Les tests sont écrits avec [Jest](https://www.npmjs.com/package/jest) et [Supertest](https://www.npmjs.com/package/supertest).
+
+```bash
+cd back
+npm run test
+```
+
 ## 🌿 Branching Strategy
 
 Nous utilisons une stratégie basée sur le **Semantic Versioning** et les types de tickets.
