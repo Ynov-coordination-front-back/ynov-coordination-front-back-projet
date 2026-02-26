@@ -4,15 +4,66 @@ on:
   push:
     branches:
       - main
-
     paths:
       - ".github/workflows/deploy.yml"
       - "back/**"
       - "front/**"
 
 jobs:
+  verify-back:
+    name: Verify back
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: back
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+          cache-dependency-path: back/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test
+
+  verify-front:
+    name: Verify front
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: front
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+          cache-dependency-path: front/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: npm run test:e2e
+
   build-back:
     name: Build back
+    needs: verify-back
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,6 +89,7 @@ jobs:
 
   build-front:
     name: Build front
+    needs: verify-front
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -60,3 +112,41 @@ jobs:
         with:
           name: front-dist
           path: front/dist/
+
+  build-storybook:
+    name: Build storybook
+    needs: verify-front
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: front
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+          cache-dependency-path: front/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: front-storybook
+          path: front/storybook-static/
+
+  delivery-gate:
+    name: Delivery gate
+    needs:
+      - build-back
+      - build-front
+      - build-storybook
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ready for delivery
+        run: echo "Build artifacts are ready (back, front, storybook)."

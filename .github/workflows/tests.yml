@@ -1,4 +1,4 @@
-name: CI & Deploy
+name: CI
 
 on:
   push:
@@ -8,15 +8,45 @@ on:
       - hotfix/*
       - develop
       - main
-
+    paths:
+      - ".github/workflows/tests.yml"
+      - "back/**"
+      - "front/**"
+  pull_request:
+    branches:
+      - develop
+      - main
     paths:
       - ".github/workflows/tests.yml"
       - "back/**"
       - "front/**"
 
 jobs:
+  lint-back:
+    name: Lint back
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: back
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+          cache-dependency-path: back/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
   test-back:
     name: Test back
+    needs: lint-back
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -37,8 +67,31 @@ jobs:
       - name: Test
         run: npm run test
 
+  lint-front:
+    name: Lint front
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: front
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+          cache-dependency-path: front/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
   test-front:
-    name: Test front
+    name: Test front e2e
+    needs: lint-front
     timeout-minutes: 60
     runs-on: ubuntu-latest
     defaults:
@@ -57,18 +110,43 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test
-        run: npm run test
-
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      
+
       - name: Run Playwright tests
-        run: npx playwright test
-      
+        run: npm run test:e2e
+
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
+  build-storybook:
+    name: Build Storybook
+    needs: lint-front
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: front
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+          cache-dependency-path: front/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: storybook-static
+          path: front/storybook-static/

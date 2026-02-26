@@ -24,7 +24,7 @@ Permettre à un utilisateur de **créer, lire, modifier et supprimer des tâches
 
 | Couche                | Technologie                                       |
 | --------------------- | ------------------------------------------------- |
-| **Front-end**         | Vue.js 3 + Vite + TypeScript + Pinia + Vue Router |
+| **Front-end**         | Vue.js 3 + Vite + TypeScript + Pinia + Vue Router + Storybook |
 | **Back-end**          | Node.js + Express + TypeScript                    |
 | **Gestion de projet** | GitHub Projects (Kanban)                          |
 | **CI/CD**             | GitHub Actions                                    |
@@ -155,6 +155,24 @@ Les tests sont écrits avec [Playwright](https://playwright.dev/).
 ```bash
 cd front
 npm test # will run npx playwright test
+```
+
+## 📚 Storybook (documentation front)
+
+Storybook est utilisé pour documenter et visualiser les composants front isolément.
+
+```bash
+cd front
+npm run storybook
+```
+
+Storybook sera accessible sur `http://localhost:6006`.
+
+Pour générer la version statique :
+
+```bash
+cd front
+npm run build-storybook
 ```
 
 ### Back
@@ -349,6 +367,7 @@ throw new NotFoundError("Todo not found");
 | Ressource                    | Lien                                                                               |
 | ---------------------------- | ---------------------------------------------------------------------------------- |
 | 📋 Board de gestion de projet | [GitHub Projects](https://github.com/orgs/Ynov-coordination-front-back/projects/2) |
+| 🚀 Onboarding dev             | [ONBOARDING.md](./ONBOARDING.md)                                                   |
 | 📖 Guide de contribution      | [CONTRIBUTING.md](./CONTRIBUTING.md)                                               |
 | 📏 Conventions techniques     | [GUIDELINES.md](./GUIDELINES.md)                                                   |
 
