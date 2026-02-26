@@ -3,6 +3,7 @@ import express from "express";
 import { todoRoutes } from "./routes/todo.routes";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./swagger";
+import { errorMiddleware } from "./middleware/error.middleware";
 
 export const app = express();
 
@@ -16,5 +17,7 @@ app.get("/health", (_req, res) => {
 });
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+app.use(errorMiddleware);
 
 export default app;

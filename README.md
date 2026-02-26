@@ -245,6 +245,77 @@ Backlog → Ready → In Progress → In Review → Done → Released
 
 ---
 
+## 🛑 Error Handling Strategy
+
+### 🎯 Goals
+
+- Consistent API error format
+- Proper HTTP status codes
+- No stack leaks in production
+- Scalable for microservices
+- Clean controller logic
+
+---
+
+### 🧱 Architecture
+
+- `AppError` – Base error class
+- `httpErrors.ts` – Standard HTTP error classes
+- `asyncHandler` – Wrapper for async controllers
+- `errorMiddleware` – Global Express error handler
+
+---
+
+### 📦 Error Response Format
+
+#### Success
+
+```json
+{
+  "success": true,
+  "data": {}
+}
+```
+
+#### Error
+
+```json
+{
+  "success": false,
+  "error": {
+    "message": "Resource not found"
+  }
+}
+```
+
+In development mode, stack traces are included.
+
+---
+
+### 🚀 How to Throw Errors
+
+Instead of:
+
+```ts
+res.status(404).json(...)
+```
+
+Use:
+
+```ts
+throw new NotFoundError("Todo not found");
+```
+
+---
+
+### 🧠 Best Practices
+
+- Never return errors manually from controllers
+- Always throw typed errors
+- Keep controllers clean
+- Let middleware handle formatting
+- Log internal errors separately
+
 ## 📁 Structure du projet
 
 ```

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { todoService } from "../services/todo.service";
+import { BadRequestError, NotFoundError } from "../errors/httpErrors";
 
 export const todoController = {
   getAll(_req: Request, res: Response): void {
@@ -10,7 +11,7 @@ export const todoController = {
   getById(req: Request, res: Response): void {
     const todo = todoService.getById(req.params.id as string);
     if (!todo) {
-      res.status(404).json({ success: false, error: "Todo not found" });
+      throw new NotFoundError("Todo not found");
       return;
     }
     res.json({ success: true, data: todo });
@@ -19,8 +20,7 @@ export const todoController = {
   create(req: Request, res: Response): void {
     const { title, description } = req.body;
     if (!title) {
-      res.status(400).json({ success: false, error: "Title is required" });
-      return;
+      throw new BadRequestError("Title is required");
     }
     const todo = todoService.create({ title, description });
     res.status(201).json({ success: true, data: todo });
@@ -29,8 +29,7 @@ export const todoController = {
   update(req: Request, res: Response): void {
     const todo = todoService.update(req.params.id as string, req.body);
     if (!todo) {
-      res.status(404).json({ success: false, error: "Todo not found" });
-      return;
+      throw new NotFoundError("Todo not found");
     }
     res.json({ success: true, data: todo });
   },
@@ -38,8 +37,7 @@ export const todoController = {
   delete(req: Request, res: Response): void {
     const deleted = todoService.delete(req.params.id as string);
     if (!deleted) {
-      res.status(404).json({ success: false, error: "Todo not found" });
-      return;
+      throw new NotFoundError("Todo not found");
     }
     res.status(204).send();
   },
