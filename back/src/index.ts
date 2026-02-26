@@ -2,6 +2,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import { todoRoutes } from "./routes/todo.routes";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./swagger";
 
 dotenv.config();
 
@@ -17,8 +19,11 @@ app.get("/api/health", (_req, res) => {
   res.json({ success: true, message: "API is running 🚀" });
 });
 
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Swagger docs available at http://localhost:${PORT}/docs`);
 });
 
 export default app;
