@@ -1,5 +1,6 @@
 import { randomUUID } from "crypto";
 import { CreateTodoDto, Todo, UpdateTodoDto } from "../types/todo.types";
+import { clear } from "console";
 
 // In-memory storage (sera remplacé par une BDD plus tard)
 let todos: Todo[] = [];
@@ -46,4 +47,8 @@ export const todoService = {
     todos = todos.filter((todo) => todo.id !== id);
     return todos.length < length;
   },
+
+  clear(): void {
+    todos = [];
+  }
 };
