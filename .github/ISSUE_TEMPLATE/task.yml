@@ -33,11 +33,11 @@ body:
       label: 🏁 Definition of Done
       value: |
         - [ ] Travail technique terminé
-        - [ ] Aucun impact négatif sur l’existant
+        - [ ] Aucun impact négatif sur l'existant
         - [ ] Documentation mise à jour si nécessaire
 
   - type: markdown
     attributes:
       value: |
-        ⚠️ Avant de créer l’issue :
+        ⚠️ Avant de créer l'issue :
         Vérifiez que le type sélectionné est bien **Task**

@@ -10,8 +10,9 @@ on:
       - main
 
     paths:
-      - ".github/workflows/*"
+      - ".github/workflows/tests.yml"
       - "back/**"
+      - "front/**"
 
 jobs:
   test-back:

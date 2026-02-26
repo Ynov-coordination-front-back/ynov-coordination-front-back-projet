@@ -17,7 +17,7 @@ body:
   - type: textarea
     id: acceptance
     attributes:
-      label: ✅ Critères d’acceptation
+      label: ✅ Critères d'acceptation
       description: Liste des critères validables
     validations:
       required: true
@@ -51,10 +51,10 @@ body:
         - [ ] Aucun bug bloquant
         - [ ] Ticket relu / validé
         - [ ] Branche fusionnée
-        - [ ] Critères d’acceptation validés
+        - [ ] Critères d'acceptation validés
 
   - type: markdown
     attributes:
       value: |
-        ⚠️ Avant de créer l’issue :
+        ⚠️ Avant de créer l'issue :
         Vérifiez que le type sélectionné est bien **User Story**

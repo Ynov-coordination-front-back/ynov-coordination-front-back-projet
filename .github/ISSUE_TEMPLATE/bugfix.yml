@@ -1,5 +1,5 @@
 name: Bugfix
-description: Correction d’un bug
+description: Correction d'un bug
 title: "[BUG] "
 labels: ["bug"]
 body:
@@ -46,5 +46,5 @@ body:
   - type: markdown
     attributes:
       value: |
-        ⚠️ Avant de créer l’issue :
+        ⚠️ Avant de créer l'issue :
         Vérifiez que le type sélectionné est bien **Bugfix**
