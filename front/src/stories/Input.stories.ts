@@ -22,11 +22,13 @@ const meta = {
   tags: ['autodocs'],
   args: {
     label: 'Nom de scène',
-    placeholder: 'Input',
+    placeholder: 'text',
     helperText: 'Cet input est reusable et compatible v-model.',
     disabled: false,
     required: false,
     type: 'text',
+    variant: 'outline',
+    size: 'md',
   },
   argTypes: {
     modelValue: { control: false },
@@ -34,6 +36,14 @@ const meta = {
     name: { control: 'text' },
     autocomplete: { control: 'text' },
     error: { control: 'text' },
+    variant: {
+      control: 'select',
+      options: ['outline', 'filled'],
+    },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+    },
   },
 } satisfies Meta<typeof BaseInput>
 
