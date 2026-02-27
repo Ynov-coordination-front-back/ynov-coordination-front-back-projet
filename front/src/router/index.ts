@@ -17,6 +17,17 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
     },
+    {
+      path: '/500',
+      name: 'error-server',
+      component: () => import('../views/ErrorServerView.vue'),
+    },
+    {
+      // Doit être en dernier — catch-all 404
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('../views/ErrorNotFoundView.vue'),
+    },
   ],
 })
 
