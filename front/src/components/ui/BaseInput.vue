@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+type InputVariant = 'outline' | 'filled'
+type InputSize = 'sm' | 'md' | 'lg'
+
 const props = withDefaults(
   defineProps<{
     modelValue?: string
@@ -14,6 +17,8 @@ const props = withDefaults(
     autocomplete?: string
     helperText?: string
     error?: string
+    variant?: InputVariant
+    size?: InputSize
   }>(),
   {
     modelValue: '',
@@ -25,6 +30,8 @@ const props = withDefaults(
     autocomplete: 'off',
     helperText: '',
     error: '',
+    variant: 'outline',
+    size: 'md',
   },
 )
 
@@ -38,6 +45,14 @@ const generatedId = `input-${Math.random().toString(36).slice(2, 10)}`
 const inputId = computed(() => props.id || generatedId)
 const hasError = computed(() => Boolean(props.error))
 const hintId = computed(() => `${inputId.value}-hint`)
+const inputClasses = computed(() => [
+  'input-control',
+  `input-control-${props.variant}`,
+  `input-control-${props.size}`,
+  {
+    'input-control-error': hasError.value,
+  },
+])
 
 const value = computed({
   get: () => props.modelValue,
@@ -59,8 +74,7 @@ function onFocus(event: FocusEvent) {
     <input
       :id="inputId"
       v-model="value"
-      class="input-control"
-      :class="{ 'input-control-error': hasError }"
+      :class="inputClasses"
       :type="type"
       :name="name"
       :placeholder="placeholder"
@@ -103,6 +117,29 @@ function onFocus(event: FocusEvent) {
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
+}
+
+.input-control-outline {
+  background: var(--color-background);
+}
+
+.input-control-filled {
+  background: color-mix(in srgb, var(--color-background-mute) 65%, transparent);
+}
+
+.input-control-sm {
+  font-size: 0.82rem;
+  padding: 0.5rem 0.65rem;
+}
+
+.input-control-md {
+  font-size: 0.95rem;
+  padding: 0.7rem 0.8rem;
+}
+
+.input-control-lg {
+  font-size: 1rem;
+  padding: 0.85rem 0.95rem;
 }
 
 .input-control::placeholder {
