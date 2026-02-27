@@ -1,0 +1,56 @@
+.input-story-shell {
+  width: min(460px, 92vw);
+  position: relative;
+  padding: 1rem;
+  border-radius: 0.9rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #22c55e 14%, transparent), transparent 45%),
+    var(--color-background-soft);
+  border: 1px solid var(--color-border);
+}
+
+.input-story-value {
+  margin-top: 0.65rem;
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+
+.input-story-tip {
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--color-text) 72%, transparent);
+}
+
+.confetti-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -8%;
+  display: block;
+  border-radius: 2px;
+  background: var(--confetti-color);
+  opacity: 0;
+  animation: input-confetti-fall var(--confetti-duration) ease-out var(--confetti-delay)
+    forwards;
+}
+
+@keyframes input-confetti-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -24px, 0) rotate(0deg);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--confetti-drift), 300px, 0) rotate(var(--confetti-rotate));
+  }
+}
