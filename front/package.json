@@ -9,8 +9,8 @@
     "preview": "vite preview",
     "test": "npx playwright test",
     "test:e2e": "npx playwright test",
-    "storybook": "npx -p storybook@9.1.15 -p @storybook/vue3-vite@9.1.15 -p @storybook/addon-essentials@9.1.15 -p @storybook/addon-a11y@9.1.15 -p @storybook/addon-interactions@9.1.15 storybook dev -p 6006",
-    "build-storybook": "npx -p storybook@9.1.15 -p @storybook/vue3-vite@9.1.15 -p @storybook/addon-essentials@9.1.15 -p @storybook/addon-a11y@9.1.15 -p @storybook/addon-interactions@9.1.15 storybook build",
+    "storybook": "STORYBOOK=true storybook dev -p 6006",
+    "build-storybook": "STORYBOOK=true storybook build",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "run-s lint:*",
@@ -41,7 +41,10 @@
     "typescript": "~5.9.3",
     "vite": "^7.3.1",
     "vite-plugin-vue-devtools": "^8.0.5",
-    "vue-tsc": "^3.2.4"
+    "vue-tsc": "^3.2.4",
+    "@storybook/addon-a11y": "^10.2.13",
+    "@storybook/vue3-vite": "^10.2.13",
+    "storybook": "^10.2.13"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
