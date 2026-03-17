@@ -5,6 +5,10 @@ import { CreateTodoDto, Todo, UpdateTodoDto } from "../types/todo.types";
 let todos: Todo[] = [];
 
 export const todoService = {
+  reset(): void {
+    todos = [];
+  },
+
   getAll(): Todo[] {
     return todos;
   },
