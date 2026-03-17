@@ -21,9 +21,16 @@ app.get("/api/health", (_req, res) => {
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-  console.log(`Swagger docs available at http://localhost:${PORT}/docs`);
-});
+function startServer(port: string | number = PORT) {
+  return app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+    console.log(`Swagger docs available at http://localhost:${port}/docs`);
+  });
+}
+
+if (require.main === module) {
+  startServer(PORT);
+}
 
 export default app;
+export { startServer };

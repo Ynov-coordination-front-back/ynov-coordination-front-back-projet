@@ -51,7 +51,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
-  render: (args) => ({
+  render: (args: Story['args']) => ({
     components: { BaseInput },
     setup() {
       const value = ref('')
@@ -67,7 +67,7 @@ export const Playground: Story = {
           delay: Math.random() * 150,
           duration: Math.random() * 600 + 1000,
           rotate: Math.random() * 720 - 360,
-          color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+          color: confettiColors[Math.floor(Math.random() * confettiColors.length)] ?? '#14b8a6',
         }))
 
         window.setTimeout(() => {

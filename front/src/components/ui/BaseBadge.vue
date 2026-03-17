@@ -33,8 +33,8 @@ const badgeClasses = computed(() => [
 
 <template>
   <span :class="badgeClasses" role="status" aria-live="polite">
-    <span v-if="dot" class="base-badge-dot" aria-hidden="true" />
-    <slot>{{ label || 'Badge' }}</slot>
+    <span v-if="props.dot" class="base-badge-dot" aria-hidden="true" />
+    <slot>{{ props.label || 'Badge' }}</slot>
   </span>
 </template>
 

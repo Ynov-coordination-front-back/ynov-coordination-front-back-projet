@@ -29,7 +29,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {
-  render: (args) => ({
+  render: (args: Story['args']) => ({
     components: { BaseButton },
     setup: () => ({ args }),
     template: `

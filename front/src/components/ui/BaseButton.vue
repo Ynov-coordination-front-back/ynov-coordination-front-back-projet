@@ -37,10 +37,10 @@ const buttonClasses = computed(() => [
 </script>
 
 <template>
-  <button :type="type" :disabled="isDisabled" :class="buttonClasses">
-    <span v-if="loading" class="base-button-loader" aria-hidden="true" />
+  <button :type="props.type" :disabled="isDisabled" :class="buttonClasses">
+    <span v-if="props.loading" class="base-button-loader" aria-hidden="true" />
     <span>
-      <slot>{{ loading ? 'Chargement...' : 'Action' }}</slot>
+      <slot>{{ props.loading ? 'Chargement...' : 'Action' }}</slot>
     </span>
   </button>
 </template>

@@ -146,6 +146,35 @@ Parse automatiquement la branche courante pour générer un message de commit co
 
 ---
 
+## 📚 Documentation livrable TD
+
+Les documents de pilotage et d'execution complementaires sont centralises dans [`documentation/`](./documentation/README.md).
+
+| Sujet | Document |
+|------|----------|
+| Onboarding nouvel arrivant | [documentation/ONBOARDING.md](./documentation/ONBOARDING.md) |
+| Pilotage projet / US | [documentation/PROJECT_MANAGEMENT.md](./documentation/PROJECT_MANAGEMENT.md) |
+| Error management | [documentation/ERROR_MANAGEMENT.md](./documentation/ERROR_MANAGEMENT.md) |
+| Features | [documentation/FEATURES.md](./documentation/FEATURES.md) |
+| Retour de stage | [documentation/STAGE_FEEDBACK.md](./documentation/STAGE_FEEDBACK.md) |
+
+### Documentation front
+
+- Storybook: `cd front && npm run storybook`
+- Build Storybook: `cd front && npm run build-storybook`
+
+### Documentation back
+
+- Swagger UI: `http://localhost:3000/docs`
+- Healthcheck: `http://localhost:3000/api/health`
+
+### Orchestration
+
+- Local simple: `make dev`
+- Mode orchestre: `docker compose up --build`
+
+---
+
 ## 🌿 Branching Strategy
 
 Nous utilisons une stratégie basée sur le **Semantic Versioning** et les types de tickets.
