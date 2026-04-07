@@ -1,14 +1,22 @@
 import request from "supertest";
 import { app } from "../app";
-import { describe, it, expect } from '@jest/globals'
-// import { todoService } from "../services/todo.service";
+import { describe, it, expect, beforeAll, afterAll } from "@jest/globals";
+import sequelize from "../config/database";
+import migrator from "../config/migrator";
+import { Todo } from "../models/todo.model";
+
+beforeAll(async () => {
+    await sequelize.authenticate();
+    await migrator.up();
+    await Todo.destroy({ where: {} });
+});
+
+afterAll(async () => {
+    await sequelize.close();
+});
 
 describe("Todo API", () => {
     let createdId: string;
-
-    // beforeEach(() => { // ! Isnt used since some tests need to test the state of the service after a create, update or delete operation
-    //     todoService.clear();
-    // })
 
     it("should create a todo", async () => {
         const res = await request(app)
