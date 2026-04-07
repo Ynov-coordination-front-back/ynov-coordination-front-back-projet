@@ -4,6 +4,7 @@ import { todoRoutes } from "./routes/todo.routes";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./swagger";
 import { errorMiddleware } from "./middleware/error.middleware";
+import { bootstrap } from "./bootstrap";
 
 export const app = express();
 

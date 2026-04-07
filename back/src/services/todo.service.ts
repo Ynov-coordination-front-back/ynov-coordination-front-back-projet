@@ -1,54 +1,40 @@
-import { randomUUID } from "crypto";
-import { CreateTodoDto, Todo, UpdateTodoDto } from "../types/todo.types";
-import { clear } from "console";
+import { Todo } from "../models/todo.model";
 
-// In-memory storage (sera remplacé par une BDD plus tard)
-let todos: Todo[] = [];
+export interface CreateTodoDto {
+  title: string;
+  description?: string | null;
+}
+
+export interface UpdateTodoDto {
+  title?: string;
+  description?: string | null;
+  completed?: boolean;
+}
 
 export const todoService = {
-  getAll(): Todo[] {
-    return todos;
+  async getAll(): Promise<Todo[]> {
+    return Todo.findAll({ order: [["createdAt", "DESC"]] });
   },
 
-  getById(id: string): Todo | undefined {
-    return todos.find((todo) => todo.id === id);
+  async getById(id: string): Promise<Todo | null> {
+    return Todo.findByPk(id);
   },
 
-  create(dto: CreateTodoDto): Todo {
-    const now = new Date();
-    const todo: Todo = {
-      id: randomUUID(),
+  async create(dto: CreateTodoDto): Promise<Todo> {
+    return Todo.create({
       title: dto.title,
-      description: dto.description,
-      completed: false,
-      createdAt: now,
-      updatedAt: now,
-    };
-    todos.push(todo);
-    return todo;
+      description: dto.description ?? null,
+    });
   },
 
-  update(id: string, dto: UpdateTodoDto): Todo | undefined {
-    const index = todos.findIndex((todo) => todo.id === id);
-    if (index === -1) return undefined;
-
-    const existing = todos[index]!;
-    const updated: Todo = {
-      ...existing,
-      ...dto,
-      updatedAt: new Date(),
-    };
-    todos[index] = updated;
-    return updated;
+  async update(id: string, dto: UpdateTodoDto): Promise<Todo | null> {
+    const todo = await Todo.findByPk(id);
+    if (!todo) return null;
+    return todo.update(dto);
   },
 
-  delete(id: string): boolean {
-    const length = todos.length;
-    todos = todos.filter((todo) => todo.id !== id);
-    return todos.length < length;
+  async delete(id: string): Promise<boolean> {
+    const deleted = await Todo.destroy({ where: { id } });
+    return deleted > 0;
   },
-
-  clear(): void {
-    todos = [];
-  }
 };
