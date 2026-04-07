@@ -16,7 +16,7 @@ export const errorMiddleware = (
     const response = {
         success: false,
         error: {
-            message: error.message,
+            message: process.env.NODE_ENV === "development" ? error.message : "An error occurred",
             ...(process.env.NODE_ENV === "development" && {
                 stack: err.stack,
             }),
